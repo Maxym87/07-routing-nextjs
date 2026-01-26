@@ -25,10 +25,10 @@ export default function NotesClient({
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [isModal, setIsModal] = useState(false);
-  const [debounsValue, setDebounseValue] = useState("");
+  const [debouncedValue, setDebouncedValue] = useState("");
 
   const updateSearchQuery = useDebouncedCallback((value: string) => {
-    setDebounseValue(value);
+    setDebouncedValue(value);
     setCurrentPage(1);
   });
 
@@ -39,7 +39,7 @@ export default function NotesClient({
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["notes", currentPage, searchQuery],
-    queryFn: () => fetchNotes(currentPage, debounsValue),
+    queryFn: () => fetchNotes(currentPage, debouncedValue),
     placeholderData: keepPreviousData,
   });
 
