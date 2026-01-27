@@ -1,5 +1,4 @@
 import { fetchNotes } from "@/lib/api";
-import { NoteTag } from "@/types/note";
 
 type NotesByIdProps = {
   params: Promise<{ slug: string[] }>;
@@ -7,7 +6,11 @@ type NotesByIdProps = {
 
 const NotesByTag = async ({ params }: NotesByIdProps) => {
   const { slug } = await params;
-  const tag = slug[0] === "all" ? undefined : (slug[0] as NoteTag);
+  const rawTag = slug[0];
+  const tag =
+    rawTag === "all"
+      ? undefined
+      : rawTag.charAt(0).toUpperCase() + rawTag.slice(1);
 
   const data = await fetchNotes(1, "", tag);
   console.log(data);
