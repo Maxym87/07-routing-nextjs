@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Note, NewNote } from "../types/note";
+import type { Note, NewNote, NoteTag } from "../types/note";
 
 export interface FetchNotesResponse {
   notes: Note[];
@@ -12,11 +12,16 @@ axios.defaults.baseURL = "https://notehub-public.goit.study/api";
 export const fetchNotes = async (
   page: number,
   query: string,
+  tag?: NoteTag,
 ): Promise<FetchNotesResponse> => {
   const params: Record<string, string | number> = {
     perPage: 12,
     page,
   };
+
+  if (tag) {
+    params.tag = tag;
+  }
 
   if (query.trim() !== "") {
     params.search = query;
