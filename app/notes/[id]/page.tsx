@@ -6,11 +6,11 @@ import {
 } from "@tanstack/react-query";
 import NoteDetailsClient from "./NoteDetails.client";
 
-type NoteProps = {
+type NoteDetailsProps = {
   params: Promise<{ id: string }>;
 };
 
-const Note = async ({ params }: NoteProps) => {
+const NoteDetails = async ({ params }: NoteDetailsProps) => {
   const { id } = await params;
 
   const queryClient = new QueryClient();
@@ -27,4 +27,4 @@ const Note = async ({ params }: NoteProps) => {
   );
 };
 
-export default Note;
+export default NoteDetails;

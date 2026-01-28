@@ -26,11 +26,12 @@ export const fetchNotes = async (
   if (query.trim() !== "") {
     params.search = query;
   }
+
   const response = await axios.get<FetchNotesResponse>("/notes", {
     headers: { Authorization: `Bearer ${token}` },
     params,
   });
-
+  console.log(response);
   return response.data;
 };
 
