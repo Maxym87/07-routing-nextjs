@@ -31,7 +31,7 @@ export default function NotesClient({
   const updateSearchQuery = useDebouncedCallback((value: string) => {
     setDebouncedValue(value);
     setCurrentPage(1);
-  });
+  }, 300);
 
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
@@ -44,9 +44,6 @@ export default function NotesClient({
     placeholderData: keepPreviousData,
     initialData,
   });
-
-  const openModal = () => setIsModal(true);
-  const closeModal = () => setIsModal(false);
 
   const totalPages = data?.totalPages ?? 0;
 
@@ -61,7 +58,7 @@ export default function NotesClient({
             onChange={setCurrentPage}
           />
         )}
-        <button className={styles.button} onClick={openModal}>
+        <button className={styles.button} onClick={() => setIsModal(true)}>
           Create note +
         </button>
       </header>
@@ -69,8 +66,8 @@ export default function NotesClient({
       {isError && <p className={styles.error}>Server error!</p>}
       {data && !isLoading && <NoteList notes={data.notes} />}
       {isModal && (
-        <Modal onClose={closeModal}>
-          <NoteForm onCloseModal={closeModal} />
+        <Modal onClose={() => setIsModal(false)}>
+          <NoteForm onCloseModal={() => setIsModal(false)} />
         </Modal>
       )}
     </div>
