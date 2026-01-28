@@ -31,7 +31,7 @@ export const fetchNotes = async (
     headers: { Authorization: `Bearer ${token}` },
     params,
   });
-  console.log(response);
+
   return response.data;
 };
 
