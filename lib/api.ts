@@ -27,7 +27,7 @@ export const fetchNotes = async (
     params.search = query;
   }
 
-  const response = await axios.get<FetchNotesResponse>("/notes", {
+  const response = await axios.get<FetchNotesResponse>(`/notes`, {
     headers: { Authorization: `Bearer ${token}` },
     params,
   });

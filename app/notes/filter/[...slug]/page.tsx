@@ -16,6 +16,7 @@ const NotesByTag = async ({ params }: NotesByIdProps) => {
       : rawTag.charAt(0).toUpperCase() + rawTag.slice(1);
 
   const data = await fetchNotes(initalPage, initialQuery, InitialTag);
+
   return <NotesClient initialData={data} initialTag={InitialTag} />;
 };
 export default NotesByTag;
