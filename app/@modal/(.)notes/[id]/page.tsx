@@ -12,7 +12,6 @@ type Prop = {
 
 const NotePage = async ({ params }: Prop) => {
   const { id } = await params;
-  console.log("noteId", id);
 
   const queryClient = new QueryClient();
 
