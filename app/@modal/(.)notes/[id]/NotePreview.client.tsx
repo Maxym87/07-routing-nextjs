@@ -26,6 +26,9 @@ const NotePreview = () => {
   return (
     <>
       <Modal onClose={() => router.back()}>
+        <button onClick={() => router.back()} className={css.backBtn}>
+          Close
+        </button>
         <div className={css.container}>
           <div className={css.item}>
             <div className={css.header}>
