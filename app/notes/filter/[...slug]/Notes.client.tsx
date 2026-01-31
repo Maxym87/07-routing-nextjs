@@ -10,19 +10,14 @@ import NoteList from "@/components/NoteList/NoteList";
 import Modal from "@/components/Modal/Modal";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
-import { FetchNotesResponse } from "@/lib/api";
 
 import styles from "./NotePage.module.css";
 
 type NotesClientProps = {
-  initialData: FetchNotesResponse;
   initialTag?: string;
 };
 
-export default function NotesClient({
-  initialData,
-  initialTag,
-}: NotesClientProps) {
+export default function NotesClient({ initialTag }: NotesClientProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [isModal, setIsModal] = useState(false);
@@ -42,7 +37,6 @@ export default function NotesClient({
     queryKey: ["notes", currentPage, debouncedValue, initialTag],
     queryFn: () => fetchNotes(currentPage, debouncedValue, initialTag),
     placeholderData: keepPreviousData,
-    initialData,
   });
 
   const totalPages = data?.totalPages ?? 0;

@@ -12,7 +12,7 @@ const NotePreview = () => {
   const router = useRouter();
 
   const { data, isError, isLoading } = useQuery<Note>({
-    queryKey: ["notes", id],
+    queryKey: ["note", id],
     queryFn: () => fetchNoteById(id),
     refetchOnMount: false,
   });
